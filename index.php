@@ -1,15 +1,15 @@
 <?php
 
+require_once("vendor/autoload.php");
+
+use joaodinizaraujo\PageAdmin;
 use Slim\Slim;
 use joaodinizaraujo\Page;
 
-require_once("vendor/autoload.php");
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-$_SERVER["DOCUMENT_ROOT"] = $_SERVER["DOCUMENT_ROOT"]."/Ecommerce-PHP";
 
 $app = new Slim();
-
 $app->config('debug', true);
 
 $app->get('/', function() {
@@ -17,6 +17,11 @@ $app->get('/', function() {
     $page->setTpl("index");
 });
 
+$app->get('/admin', function() {
+    $page = new PageAdmin();
+    $page->setTpl("index");
+});
+
 $app->run();
 
- ?>
+?>
