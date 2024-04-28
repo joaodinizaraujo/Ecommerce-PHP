@@ -1,8 +1,10 @@
-<?php 
+<?php
 
 namespace joaodinizaraujo\DB;
 
-class Sql {
+use PDO;
+
+class Sql{
 	private $conn;
 
 	public function __construct(){
@@ -33,8 +35,8 @@ class Sql {
 		$stmt = $this->conn->prepare($rawQuery);
 		$this->setParams($stmt, $params);
 		$stmt->execute();
-		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 }
 
- ?>
+?>
